@@ -1,0 +1,872 @@
+@use "./initialize.scss"as *;
+@use "./variables.scss"as *;
+@use "./mixins.scss"as *;
+
+
+@import "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap";
+
+.container {
+    max-width: 1120px;
+    width: 100%;
+    padding: 0 35px;
+    @include flex(center, center, row);
+
+    @media screen and (max-width: 920px) {
+        max-width: 600px;
+    }
+}
+
+.img-wrapper {
+    width: 50%;
+
+    @media screen and (max-width: 920px) {
+        width: 80%;
+    }
+
+    @media screen and (max-width: 460px) {
+        width: 100%;
+    }
+
+
+    img {
+        height: 100%;
+        width: 100%;
+        border-radius: 8px;
+    }
+}
+
+header {
+    height: 72px;
+    padding: 40px 0;
+    @include flex(center, center, row);
+    width: 100%;
+    background-color: $tertiary-color;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    transition: .3s;
+
+    @media screen and (max-width: 920px) {
+        height: 0vh;
+    }
+
+    .container-header {
+        @include flex(center, space-between, row);
+
+        .logo {
+            width: 185px;
+            height: 45px;
+
+            @media screen and (max-width: 920px) {
+                width: 165px;
+            }
+
+            @media screen and (max-width: 460px) {
+                width: 120px;
+            }
+        }
+
+        nav {
+            @include flex(center, center, row);
+
+            @media screen and (max-width: 920px) {
+                position: absolute;
+                top: 40%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            ul {
+                @include flex(center, center, row);
+                list-style: none;
+                gap: 30px;
+
+                @media screen and (max-width: 920px) {
+                    display: none;
+                }
+
+                li {
+
+                    a {
+                        text-decoration: none;
+                        color: $paragraph;
+                        font-size: 18px;
+                        font-weight: 400;
+                        transition: .5s;
+
+                        @media screen and (max-width: 920px) {
+                            text-decoration: none;
+                            font-size: 27px;
+                        }
+
+                        &:hover {
+                            color: $secondary-color;
+                            font-weight: 700;
+                            text-underline-offset: 15px;
+                        }
+                    }
+
+                    .selected {
+                        color: $secondary-color;
+                        font-weight: 700;
+                        text-decoration: underline;
+                        text-underline-offset: 15px;
+
+                        @media screen and (max-width: 920px) {}
+                    }
+                }
+            }
+
+            .navBar-ul {
+                display: flex;
+
+                @media screen and (max-width: 920px) {
+                    @include flex(center, center, column);
+                    gap: 50px;
+                }
+            }
+        }
+
+        .btn {
+            @include btn(transparent, $button-hover, $primary-color, white, $primary-color, transparent);
+            text-decoration: none;
+
+            @media screen and (max-width: 920px) {
+                display: none;
+            }
+        }
+
+        .onScrollBtn {
+            @include btn(transparent, white, white, $primary-color, white, transparent);
+
+            @media screen and (max-width: 920px) {
+                display: none;
+            }
+        }
+
+        .navBar-delete-btn {
+            @media screen and (max-width: 920px) {
+                display: flex;
+                position: absolute;
+                left: 50%;
+                bottom: 26%;
+                transform: translate(-50%, 0);
+
+                &:hover {
+                    transform: translate(-50%, 5px);
+                }
+            }
+        }
+
+        .socio-icons {
+            display: none;
+
+            ul {
+                width: 100%;
+                gap: 25px;
+                @include flex(center, flex-start, row);
+                list-style: none;
+
+                svg {
+
+                    path {
+                        transition: 1s;
+                    }
+
+                    &:hover path {
+                        fill: mediumvioletred;
+                    }
+                }
+            }
+        }
+
+        .navBar-socio-icons {
+            @media screen and (max-width: 920px) {
+                display: flex;
+                position: absolute;
+                bottom: 13%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+
+            @media screen and (max-width: 920px) {
+                display: flex;
+            }
+        }
+    }
+}
+
+.mobile-navBar {
+    @media screen and (max-width: 920px) {
+        width: 100vw;
+        height: 100vh;
+        @include flex(flex-start, center, row);
+    }
+}
+
+#main {
+    padding: 72px 0 60px 0;
+    @include flex(flex-start, center, row);
+    background-color: $tertiary-color;
+    width: 100%;
+
+    .container-main {
+        position: relative;
+        padding-top: 90px;
+        @include flex(center, center, row);
+
+        @media screen and (max-width: 920px) {
+            @include flex(center, center, column);
+        }
+
+        .content {
+            padding-bottom: 70px;
+            @include flex(flex-start, center, column);
+            gap: 30px;
+            width: 60%;
+
+            @media screen and (max-width: 920px) {
+                @include flex(center, center, column);
+                width: 100%;
+                text-align: center;
+            }
+
+            h3 {
+                color: $primary-color;
+                font-weight: 700;
+                font-size: 16px;
+            }
+
+            h1 {
+                font-weight: 700;
+                font-size: 52px;
+                color: $secondary-color;
+
+                @media screen and (max-width: 920px) {
+                    font-size: 34px;
+                }
+            }
+
+            p {
+                font-size: 18px;
+                color: $paragraph;
+            }
+
+            button {
+                @include btn($primary-color, $button-hover, white, white, $primary-color, $primary-color);
+            }
+        }
+
+        .hero {
+            width: 40%;
+
+            @media screen and (max-width: 920px) {
+                width: 100%;
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .stats {
+            @include flex(center, space-between, row);
+            background-color: white;
+            width: 90%;
+            position: absolute;
+            left: 5%;
+            bottom: -170px;
+            border-radius: 8px;
+            padding: 60px;
+
+            @media screen and (max-width: 920px) {
+                @include flex(center, center, column);
+                gap: 30px;
+                bottom: -300px;
+                left: 10%;
+                width: 80%;
+            }
+
+            div {
+                @include flex(center, center, column);
+                width: calc(100% / 3);
+                gap: 10px;
+
+                @media screen and (max-width: 920px) {
+                    width: 100%;
+                    text-align: center;
+                }
+
+                h4 {
+                    font-size: 48px;
+                    font-weight: 700;
+                    color: $secondary-color;
+
+                    @media screen and (max-width: 460px) {
+                        font-size: 30px;
+                    }
+                }
+
+                p {
+                    font-size: 18px;
+                    color: $primary-color;
+
+                    @media screen and (max-width: 920px) {
+                        font-size: 14px;
+                    }
+                }
+            }
+
+            .middle-state {
+                border: 3px solid;
+                border-color: transparent $tertiary-color transparent $tertiary-color;
+
+                @media screen and (max-width: 920px) {
+                    border: none;
+                }
+            }
+        }
+    }
+}
+
+#services {
+    min-height: 100vh;
+    @include flex(center, center, column);
+    margin-top: 110px;
+
+    @media screen and (max-width: 920px) {
+        margin-top: 230px;
+    }
+
+    .container-services {
+        padding: 100px 0;
+        @include flex(center, center, column);
+
+        @media screen and (max-width: 920px) {
+            padding-top: 100px;
+        }
+
+        h3 {
+            color: $primary-color;
+            font-weight: 700;
+            font-size: 16px;
+
+            @media screen and (max-width: 920px) {
+                font-size: 14px;
+            }
+        }
+
+        h2 {
+            font-weight: 700;
+            font-size: 40px;
+            width: 70%;
+            color: $secondary-color;
+            text-align: center;
+            margin-top: 20px;
+
+            @media screen and (max-width: 920px) {
+                font-size: 30px;
+                width: 100%;
+            }
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            margin-top: 50px;
+            gap: 30px;
+            padding: 0 50px;
+
+            @media screen and (max-width: 920px) {
+                grid-template-columns: 1fr;
+            }
+
+            .service {
+                background-color: white;
+                padding: 25px;
+                border-radius: 8px;
+                gap: 15px;
+                border: 1px solid $tertiary-color;
+                @include flex(flex-start, flex-start, column);
+
+                h4 {
+                    font-size: 25px;
+                    color: $secondary-color;
+                }
+
+                p {
+                    font-size: 16px;
+                    color: $paragraph;
+                    line-height: 22px;
+                }
+            }
+        }
+    }
+}
+
+#about {
+    min-height: 100vh;
+    @include flex(center, center, row);
+    background-color: white;
+
+    .container-about {
+        @include flex(center, center, row);
+        gap: 50px;
+
+        @media screen and (max-width: 920px) {
+            @include flex(center, center, column-reverse);
+            padding: 100px 0;
+        }
+
+        .content {
+            @include flex(flex-start, center, column);
+            width: 50%;
+            gap: 20px;
+
+            @media screen and (max-width: 920px) {
+                @include flex(flex-start, center, column);
+                width: 80%;
+            }
+
+            h3 {
+                color: $primary-color;
+                font-weight: 700;
+                font-size: 16px;
+
+                @media screen and (max-width: 920px) {
+                    font-size: 14px;
+                }
+            }
+
+            h2 {
+                font-weight: 700;
+                font-size: 40px;
+                color: $secondary-color;
+
+                @media screen and (max-width: 920px) {
+                    font-size: 30px;
+                }
+            }
+
+            div {
+                @include flex(flex-start, center, column);
+                gap: 10px;
+                color: $paragraph;
+            }
+        }
+
+        .img-wrapper {
+            @media screen and (max-width: 460px) {
+                width: 80%;
+            }
+        }
+
+    }
+}
+
+#testamonials {
+    min-height: 100vh;
+    @include flex(center, center, row);
+
+    .container-testamonials {
+        position: relative;
+        @include flex(center, center, column);
+        gap: 20px;
+
+        @media screen and (max-width: 920px) {
+            text-align: center;
+            padding: 100px 0 250px 0;
+        }
+
+        h3 {
+            color: $primary-color;
+            font-weight: 700;
+            font-size: 16px;
+
+            @media screen and (max-width: 920px) {
+                font-size: 14px;
+            }
+        }
+
+        h2 {
+            font-weight: 700;
+            font-size: 40px;
+            color: $secondary-color;
+
+            @media screen and (max-width: 920px) {
+                font-size: 30px;
+            }
+        }
+
+        .testamonials {
+            width: 105%;
+            gap: 30px;
+            @include flex(center, flex-start, row);
+            margin-top: 20px;
+            overflow: hidden;
+
+            @media screen and (max-width: 920px) {
+                @include flex(center, center, column);
+            }
+
+            .testamonial {
+                box-shadow: 0 0 12px rgb(0 0 0 / 8%);
+                min-width: 48%;
+                @include flex(flex-start, center, column);
+                padding: 25px;
+                background-color: $tertiary-color;
+                gap: 25px;
+                height: 283px;
+
+                @media screen and (max-width: 920px) {
+                    width: 90%;
+                    height: auto;
+                }
+
+                p {
+                    color: $paragraph;
+                    text-align: left;
+                    line-height: 22px;
+                }
+
+                .testamonial-info {
+                    @include flex(center, center, row);
+                    gap: 10px;
+                    margin-top: auto;
+
+                    img {
+                        border-radius: 50%;
+                        height: 42px;
+                        width: 42px;
+                    }
+
+                    span {
+                        color: $primary-color;
+                        font-weight: 700;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+
+        .testamonials-parts {
+            padding: 10px;
+            @include flex(center, center, row);
+            gap: 20px;
+
+            @media screen and (max-width: 920px) {
+                display: none;
+            }
+
+            div {
+                height: 20px;
+                width: 20px;
+                border: 1px solid $tertiary-color;
+                border-radius: 50%;
+                cursor: pointer;
+                background-color: white;
+            }
+
+            .active {
+                background-color: rgb(255, 167, 5);
+            }
+        }
+
+        .stats {
+            @include flex(center, space-between, row);
+            background-color: $primary-color;
+            width: 90%;
+            position: absolute;
+            bottom: -275px;
+            border-radius: 8px;
+            left: 5%;
+            padding: 60px;
+
+            @media screen and (max-width: 920px) {
+                @include flex(center, center, column);
+                gap: 20px;
+                bottom: -140px;
+                width: 80%;
+                left: 10%;
+            }
+
+            @media screen and (max-width: 460px) {
+                @include flex(center, center, column);
+                left: 5%;
+                width: 90%;
+            }
+
+            h2 {
+                font-size: 40px;
+                width: 65%;
+                font-weight: 700;
+                color: white;
+                min-width: 388px;
+
+                @media screen and (max-width: 920px) {
+                    font-size: 30px;
+                    width: 100%;
+                    min-width: unset;
+                }
+
+                @media screen and (max-width: 460px) {
+                    font-size: 22px;
+                }
+            }
+
+            button {
+                @include btn(white, white, $primary-color, $primary-color, transparent, transparent);
+            }
+
+        }
+    }
+}
+
+#contact {
+    min-height: 100vh;
+    @include flex(center, center, column);
+    background-color: white;
+
+    .ad-section {
+        padding-top: 250px;
+        padding-bottom: 100px;
+
+        @media screen and (max-width: 920px) {
+            @include flex(center, center, column);
+            gap: 50px;
+        }
+
+        .content {
+            @include flex(flex-start, center, column);
+            gap: 20px;
+            width: 50%;
+
+            @media screen and (max-width: 920px) {
+                width: 80%;
+            }
+
+            @media screen and (max-width: 460px) {
+                width: 100%;
+            }
+
+            h3 {
+                color: $primary-color;
+                font-weight: 700;
+                font-size: 16px;
+
+                @media screen and (max-width: 920px) {
+                    font-size: 14px;
+                }
+            }
+
+            h2 {
+                font-weight: 700;
+                font-size: 40px;
+                color: $secondary-color;
+                padding: 0 5px;
+
+                @media screen and (max-width: 920px) {
+                    font-size: 30px;
+                    padding: 0;
+                }
+            }
+
+            div {
+                @include flex(center, center, row);
+                gap: 5px;
+            }
+
+            button {
+                @include btn($primary-color, $button-hover, white, white, $primary-color, $primary-color);
+            }
+        }
+    }
+
+    .contact-form {
+        @include flex(center, center, row);
+        gap: 50px;
+        padding-bottom: 100px;
+
+        @media screen and (max-width: 920px) {
+            @include flex(center, center, column-reverse);
+        }
+
+        form {
+            width: 50%;
+            @include flex(flex-start, center, column);
+            border-radius: 8px;
+            padding: 32px;
+            background-color: $light-background;
+            gap: 20px;
+
+            @media screen and (max-width: 920px) {
+                width: 80%;
+            }
+
+            @media screen and (max-width: 460px) {
+                width: 100%;
+            }
+
+            h3 {
+                color: $secondary-color;
+                font-weight: 700;
+                font-size: 24px;
+            }
+
+            div {
+                @include flex(flex-start, center, column);
+                gap: 10px;
+                width: 100%;
+
+                label {
+                    color: $secondary-color;
+                }
+
+                input {
+                    outline: none;
+                    background-color: #fff;
+                    padding: 10px;
+                    border-radius: 5px;
+                    border: 1px solid $tertiary-color;
+                    width: 100%;
+                    transition: .3s;
+
+                    &:focus {
+                        border: 1px solid $primary-color;
+                    }
+                }
+
+                textarea {
+                    @extend input;
+                    height: 100px;
+                    resize: none;
+                }
+            }
+
+            button {
+                @include btn($primary-color, $button-hover, white, white, $primary-color, $primary-color);
+            }
+        }
+    }
+}
+
+footer {
+    padding: 100px 0 20px 0;
+    background-color: $primary-color;
+    @include flex(center, center, column);
+
+    .container-footer {
+        @include flex(center, space-between, row);
+
+        @media screen and (max-width: 920px) {
+            @include flex(flex-start, center, column);
+            gap: 50px;
+        }
+
+        .content {
+            flex: 2;
+            @include flex(flex-start, center, column);
+            gap: 20px;
+
+            @media screen and (max-width: 920px) {
+                width: 100%;
+            }
+
+            .logo {
+                width: 225px;
+                height: 52px;
+            }
+
+            p {
+                color: white;
+                font-size: 18px;
+            }
+
+            .socio-icons {
+
+                ul {
+                    width: 100%;
+                    gap: 25px;
+                    @include flex(center, flex-start, row);
+                    list-style: none;
+
+                    svg {
+
+                        path {
+                            transition: 1s;
+                        }
+
+                        &:hover path {
+                            fill: mediumvioletred;
+                        }
+                    }
+                }
+            }
+        }
+
+        .submit-email {
+            flex: 1;
+            @include flex(flex-start, center, column);
+            color: white;
+            gap: 20px;
+
+            label {
+                font-size: 18px;
+                font-weight: 700;
+            }
+
+            p {
+                font-size: 16px;
+                padding-top: 0;
+            }
+
+            form {
+                @include flex(center, flex-start, row);
+                width: 100%;
+                gap: 5px;
+                flex-wrap: wrap;
+                flex: 2;
+
+                input {
+                    outline: none;
+                    background-color: #fff;
+                    padding: 10px;
+                    border-radius: 5px;
+                    transition: .3s;
+                    border: 1px solid $primary-color;
+                    flex: 2;
+
+                    &:focus {
+                        border-color: $primary-color;
+                    }
+                }
+
+                button {
+                    @include btn(white, white, $primary-color, $primary-color, transparent, transparent);
+                    border-radius: 8px;
+                    padding: 10px 12px;
+                }
+            }
+        }
+    }
+
+    hr {
+        width: 100%;
+        border: 1px solid white;
+        background-color: white;
+        margin-top: 40px;
+    }
+
+    p {
+        color: white;
+        font-size: 16px;
+        padding-top: 20px;
+    }
+}

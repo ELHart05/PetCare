@@ -1,0 +1,23 @@
+@use "./variables.scss"as *;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+
+    &::selection {
+        color: white;
+        background-color: $primary-color;
+    }
+}
+
+body {
+    position: relative;
+    font-family: 'DM Sans', sans-serif;
+    background-color: $light-background;
+
+    textarea {
+        font-family: 'DM Sans', sans-serif;
+    }
+}

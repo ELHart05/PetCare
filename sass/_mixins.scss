@@ -1,0 +1,33 @@
+@use './variables.scss'as *;
+
+@mixin flex($align, $justify, $direction) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    flex-direction: $direction;
+}
+
+@mixin btn($bg, $hoverBg, $color, $hoverColor, $borderColor, $hoverBorderColor) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: $bg;
+    outline: none;
+    border: 1px solid $borderColor;
+    color: $color;
+    font-weight: 700;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: .5s;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $hoverBg;
+        color: $hoverColor;
+        border-color: $hoverBorderColor;
+        transform: translateY(3px);
+    }
+}
