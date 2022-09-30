@@ -10,11 +10,11 @@ const navBar = document.querySelector("header"),
         care: document.querySelector("header a svg .care"),
         g: document.querySelectorAll("header a svg g path")
     },
-
     testamonials = document.querySelector(".testamonials"),
     selectTestamonial = document.querySelectorAll(".testamonials-parts div"),
     statsTitle = document.querySelectorAll(".container-main .stats div h4"),
-    socioIcons = document.querySelector(".container-header .socio-icons");
+    socioIcons = document.querySelector(".container-header .socio-icons"),
+    navSections = document.querySelectorAll(".navbar-anchor");
 
 
 let counter = 0,
@@ -87,16 +87,15 @@ const automaticSelect = setInterval(() => {
 selectTestamonial[0].addEventListener("click", () => {
     clearInterval(automaticSelect);
     testamonials.scrollTo(0, 0);
-    selectTestamonial.forEach((select) => {
-        select.classList.toggle("active");
-    });
+    selectTestamonial[0].classList.add("active")
+    selectTestamonial[1].classList.remove("active")
+
 })
 selectTestamonial[1].addEventListener("click", () => {
     clearInterval(automaticSelect);
     testamonials.scrollTo(5000, 0);
-    selectTestamonial.forEach((select) => {
-        select.classList.toggle("active");
-    });
+    selectTestamonial[0].classList.remove("active")
+    selectTestamonial[1].classList.add("active")
 })
 
 navUlItems.forEach((item) => {
@@ -105,16 +104,26 @@ navUlItems.forEach((item) => {
             ulItems.classList.remove("selected");
         })
         e.target.classList.add("selected");
-        console.log(e.target);
     })
 })
 
 window.addEventListener("scroll", () => {
+    for (let i = 0; i < navSections.length; i++) { //changing selected anchor tag when scroll
+        if (navSections[i].offsetTop <= this.scrollY) { //first scroll to have the condition on up and the last one for the down condition
+            navUlItems.forEach((item) => {
+                item.classList.remove("selected")
+            })
+            navUlItems[i].classList.add("selected");
+        }
+        if ((i == 3) && (navSections[i].offsetTop + navSections[i].scrollHeight < this.scrollY)){
+            navUlItems.forEach((item) => {
+                item.classList.remove("selected")
+            })
+        }
+    }
     if (navBar.classList.contains("mobile-navBar")) return;
-
     scrollStyle();
-
-    if (this.scrollY > statsTitle[0].scrollHeight) {
+    if (this.scrollY > statsTitle[0].offsetTop) {
         counter++;
         if (counter > 1) {
             return;

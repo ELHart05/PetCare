@@ -30,4 +30,11 @@
         border-color: $hoverBorderColor;
         transform: translateY(3px);
     }
+
+    svg{
+        @media screen and (max-width: 290px){
+         height: 35px;
+         width: 35px;
+        }
+    }
 }
