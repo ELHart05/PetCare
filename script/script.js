@@ -98,24 +98,15 @@ selectTestamonial[1].addEventListener("click", () => {
     selectTestamonial[1].classList.add("active")
 })
 
-navUlItems.forEach((item) => {
-    item.addEventListener("click", (e) => {
-        navUlItems.forEach((ulItems) => {
-            ulItems.classList.remove("selected");
-        })
-        e.target.classList.add("selected");
-    })
-})
-
 window.addEventListener("scroll", () => {
     for (let i = 0; i < navSections.length; i++) { //changing selected anchor tag when scroll
-        if (navSections[i].offsetTop <= this.scrollY) { //first scroll to have the condition on up and the last one for the down condition
+        if (navSections[i].offsetTop <= this.scrollY+10) { //first scroll to have the condition on up and the last one for the down condition
             navUlItems.forEach((item) => {
                 item.classList.remove("selected")
             })
             navUlItems[i].classList.add("selected");
         }
-        if ((i == 3) && (navSections[i].offsetTop + navSections[i].scrollHeight < this.scrollY)){
+        if ((i == 3) && (navSections[i].offsetTop + navSections[i].scrollHeight < this.scrollY+10)){
             navUlItems.forEach((item) => {
                 item.classList.remove("selected")
             })
